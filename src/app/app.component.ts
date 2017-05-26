@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { RssFeedService } from './rss-feed.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
 }

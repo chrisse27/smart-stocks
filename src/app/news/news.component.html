@@ -1,0 +1,8 @@
+<md-list>
+    <h3 md-subheader>News</h3>
+    <md-list-item *ngFor="let news of news$ | async" (click)="openNews(news)" routerLink="./news/{{ news.guid }}">
+        <md-icon md-list-icon>folder</md-icon>
+        <h4 md-line>{{news.title}}</h4>
+        <p md-line> {{news.pubDate | date}} </p>
+    </md-list-item>
+</md-list>
