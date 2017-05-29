@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Feed } from './feed';
 
 @Injectable()
 export class RssFeedService {
@@ -11,7 +12,7 @@ export class RssFeedService {
     private http: Http
   ) { }
 
-  getFeedContent(url: string): Observable<any> {
+  getFeedContent(url: string): Observable<Feed> {
     return this.http.get(this.rssToJsonServiceBaseUrl + url)
       .map(this.extractFeeds)
       .catch(this.handleError);

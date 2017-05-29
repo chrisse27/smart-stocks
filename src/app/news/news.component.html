@@ -1,5 +1,6 @@
 <md-list>
     <h3 md-subheader>News</h3>
+    <app-feed-card *ngFor="let news of news$ | async" [feed]="news"></app-feed-card>
     <md-list-item *ngFor="let news of news$ | async" (click)="openNews(news)" routerLink="./news/{{ news.guid }}">
         <md-icon md-list-icon>folder</md-icon>
         <h4 md-line>{{news.title}}</h4>

@@ -1,6 +1,9 @@
+import { AppState, getNews } from './../reducers/index';
+import { FeedEntry } from './../feed/feed-entry';
 import { Observable } from 'rxjs/Observable';
 import { RssFeedService } from './../rss-feed.service';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-news',
@@ -9,19 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  news$: Observable<any>;
+  news$: Observable<FeedEntry[]>;
 
-  constructor(private feed: RssFeedService) {
-
+  constructor(private store: Store<AppState>) {
   }
 
   ngOnInit(): void {
-    this.news$ = this.feed.getFeedContent('http://finance.yahoo.com/rss/headline?s=yhoo')
-      .map(feed => feed.items);
-
-    this.news$.subscribe(items => {
-      console.log(items);
-    });
+    this.news$ = this.store.select(getNews);
   }
 
   openNews(news) {
